@@ -1,23 +1,17 @@
 # 📊 Batterie Logger Dashboard
 
-Professionelle Konfiguration, Analyse und Auswertung von Logger-Messungen an Batteriesystemen gemäss technischen Vorgaben.
+**Einfache, intuitive Konfiguration, CSV-Upload und automatische Auswertung** von Logger-Messungen an Batteriesystemen - alles auf einer Übersichtlichen Seite.
 
 ## 🎯 Features
 
-- **📋 Testparameter-Konfiguration** – Strukturierte Eingabe aller relevanten Messvorgaben
-- **📥 CSV-Upload & Spalten-Mapping** – Flexible Datenimporte mit Skalierungsfaktoren
-- **🔧 Messaufbau-Hinweise** – Detaillierte Anleitung mit Sicherheitshinweisen und Checklisten
-  - Messpunkte & Kanalzuordnung
-  - Vorbereitung & Installation
-  - Sicherheitshinweise (verbindlich)
-  - Logger-Konfiguration
-  - Ereignis-Protokollierung
-- **📈 Automatische Analyse & Visualisierung**
+- **📋 Testparameter** – Fahrzeug, Batterie, Messziele, Abbruchkriterien (6-Spalten Layout)
+- **📥 CSV Upload & Mapping** – Flexible Datenimporte mit Skalierungsfaktoren
+- **📈 Analyse & Visualisierung** – Automatische Auswertung mit Plots
   - Abbruchkriterien-Detektion (Ruhestrom, Unterspannung, Zeit)
-  - Berechnung entnommener Ladung (Ah) und Energie (Wh)
-  - Duale Plots (Spannung/Strom, Verbraucherströme, Temperatur)
-  - Kumulative Metriken
-- **💾 Export** – JSON, Markdown, CSV (mit allen Berechnungen)
+  - Berechnung Ladung (Ah) und Energie (Wh)
+  - Dual-Axis Plots (U_Bat & I_Bat, Q & E)
+- **💾 Export** – JSON & CSV Download
+- **5️⃣ Messaufbau-Hinweise** – Sicherheit, Vorbereitung, Logger-Konfiguration
 
 ## 📋 Abbruchkriterien
 
@@ -43,48 +37,38 @@ Das Dashboard detektiert automatisch:
 
 3. Browser öffnet sich automatisch unter `http://localhost:8501`
 
-## 📖 Verwendung
+## 📖 Workflow
 
-### 1️⃣ Testparameter (Tab 1)
-Konfiguriere Fahrzeug, Batterie, Messziele und Abbruchkriterien.
-- Automatische Berechnung von U_End und E_Nenn aus Herstellerdaten
-- Vorlagen für Standard-Fahrzeugkategorien (Reisezugwagen, Triebzug)
+**Eine Seite – Fünf Abschnitte:**
 
-### 2️⃣ CSV Upload & Mapping (Tab 2)
-Lade Logger-Daten hoch und ordne Spalten zu.
-- Unterstützt verschiedene Trennzeichen und Dezimalformate
-- Optional: Skalierungsfaktoren pro Spalte (z.B. mA → A)
+### 1️⃣ Testparameter
+- Fahrzeug (Typ, Nummer, Ort, Datum, Person)
+- Batterie (Chemie, Hersteller, U_Nenn, C_Nenn, Zellen, Stränge)
+- Messziele (Messziel, Testbedingung, Bedienprofil)
+- Abbruchkriterien (Ruhestrom, Unterspannung, Zeit)
+- **Automatisch:** E_Nenn aus U × C; U_End aus U/Zelle × n
 
-### 3️⃣ Messaufbau-Hinweise (Tab 3)
-Detaillierte Anleitung für die Messung:
-- **Messpunkte:** U_Bat, I_Bat, I_Vi
-- **Kanalzuordnung:** Logger-Konfiguration
-- **Vorbereitung:** Checkliste vor Messbeginn
-- **Sicherheit:** Verbindliche Sicherheitshinweise
-- **Logger-Konfiguration:** Zeitbasis, Datenformat, Konventionen
-- **Messphase:** Ereignis-Protokollierung
+### 2️⃣ CSV Upload & Mapping
+- CSV hochladen (Trennzeichen, Dezimal, Encoding einstellbar)
+- Spalten mappen (Zeit, U_Bat, I_Bat, optional Verbraucher & Temperaturen)
+- Skalierungsfaktoren setzen (z.B. mA → A)
 
-Enthält auch Tabellen mit:
-- Abbruchkriterien und Stabilitätsfenstern
-- Mindestanforderungen Messkette
-- Ruhestrom-Defaults (BCA 20002483)
+### 3️⃣ Analyse & Ergebnisse
+- **6 Metriken:** Kriterium, Testende, Ladung, Energie, U_min, Q_%
+- **2 Plots:** U_Bat & I_Bat (Dual-Axis); Ladung & Energie
+- **Abbruchkriterien:** Automatische Detektion mit Zeitpunkten
 
-### 4️⃣ Analyse & Visualisierung (Tab 4)
-Automatische Auswertung der geladenen Daten:
-- **Zusammenfassung:** Abbruchkriterium, Testende, Ladung, Energie
-- **Plots:**
-  - U_Bat & I_Bat (Dual-Axis mit Bereichsschieber)
-  - Verbraucherströme (I_Vi)
-  - Kumulative Ladung & Energie
-  - Temperaturen (falls vorhanden)
-- **Abbruchkriterien-Detektion:** Automatische Erkennung mit Zeitpunkten
+### 4️⃣ Export
+- Konfiguration als JSON
+- Ergebnisse als JSON
+- Auswertungstabelle als CSV
 
-### 5️⃣ Export (Tab 5)
-Lade Ergebnisse herunter:
-- Testparameter als JSON
-- Analyse-Summary als JSON
-- Report als Markdown
-- Auswertungstabellen als CSV (komplett & bis Testende)
+### 5️⃣ Messaufbau-Hinweise
+- Messpunkte (U_Bat, I_Bat, I_Vi)
+- Sicherheit (Verbindlich!)
+- Vorbereitung vor Messung
+- Logger-Konfiguration
+- Abbruchkriterien-Tabelle
 
 ## 📐 Formeln
 
