@@ -697,8 +697,12 @@ with tabs[3]:
         md.append(f"- U_Bat,min: {summary['U_Bat_min']:.2f} V (Zeit: {summary['U_Bat_min_time']})\n")
         md.append(f"- Entnommene Ladung: {summary['Q_Ah_total']:.3f} Ah\n")
         md.append(f"- Entnommene Energie: {summary['E_Wh_total']:.1f} Wh\n")
-        md.append(f"- Anteil Q_%: {'' if summary['Q_pct'] is None else f'{summary['Q_pct']:.1f} %'}\n")
-        md.append(f"- Anteil E_%: {'' if summary['E_pct'] is None else f'{summary['E_pct']:.1f} %'}\n")
+
+        q_pct_str = "" if summary.get("Q_pct") is None else f"{summary['Q_pct']:.1f} %"
+        e_pct_str = "" if summary.get("E_pct") is None else f"{summary['E_pct']:.1f} %"
+
+        md.append(f"- Anteil Q_%: {q_pct_str}\n")
+        md.append(f"- Anteil E_%: {e_pct_str}\n")
 
         report_md = "".join(md)
         st.download_button(
